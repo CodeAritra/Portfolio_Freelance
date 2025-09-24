@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 
 export default function Navbar({ data }) {
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  // Apply theme to <html> tag
   useEffect(() => {
     document.querySelector("html").setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
@@ -13,7 +12,7 @@ export default function Navbar({ data }) {
 
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
-  // Generate links dynamically
+  // ✅ Dynamic links
   const links = [];
   if (data.about) links.push({ href: "about", label: "About" });
   if (data.skills) links.push({ href: "skills", label: "Skills" });
@@ -23,20 +22,19 @@ export default function Navbar({ data }) {
   if (data.testimonials) links.push({ href: "testimonials", label: "Testimonials" });
   if (data.contact) links.push({ href: "contact", label: "Contact" });
 
-  // Smooth scroll handler
+  // ✅ Smooth scroll without # in URL
   const handleScroll = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setOpen(false);
     }
-    setOpen(false); // close mobile menu after click
   };
 
   return (
-    <nav className="navbar bg-base-100 backdrop-blur sticky top-0 z-50">
+    <nav className="navbar bg-base-100 sticky top-0 z-50 backdrop-blur">
       <div className="container mx-auto flex justify-between items-center px-4">
-        {/* Logo / Brand */}
-        <a href="#" className="text-xl font-bold">My Portfolio — Demo</a>
+        <span className="text-xl font-bold">My Portfolio — Demo</span>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
@@ -49,23 +47,18 @@ export default function Navbar({ data }) {
               {link.label}
             </button>
           ))}
-
-          {/* Dark/Light Mode Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="btn btn-circle btn-ghost text-xl"
-          >
+          <button onClick={toggleTheme} className="btn btn-circle btn-ghost text-xl">
             {theme === "light" ? <FaMoon /> : <FaSun />}
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile menu button */}
         <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
           {open ? <FaTimes /> : <FaBars />}
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Dropdown */}
       {open && (
         <div className="md:hidden bg-base-100 shadow-lg flex flex-col items-center py-4 space-y-3">
           {links.map((link, i) => (
@@ -77,12 +70,7 @@ export default function Navbar({ data }) {
               {link.label}
             </button>
           ))}
-
-          {/* Dark/Light Mode Toggle (Mobile) */}
-          <button
-            onClick={toggleTheme}
-            className="btn btn-circle btn-ghost text-xl mt-2"
-          >
+          <button onClick={toggleTheme} className="btn btn-circle btn-ghost text-xl mt-2">
             {theme === "light" ? <FaMoon /> : <FaSun />}
           </button>
         </div>
