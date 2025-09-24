@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 
 export default function Navbar({ data }) {
-  console.log("data nav = ",data);
-  
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
@@ -15,34 +13,41 @@ export default function Navbar({ data }) {
 
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
+  // Generate links dynamically
   const links = [];
-  if (data.about) links.push({ href: "#about", label: "About" });
-  if (data.skills) links.push({ href: "#skills", label: "Skills" });
-  if (data.projects) links.push({ href: "#projects", label: "Projects" });
-  if (data.services) links.push({ href: "#services", label: "Services" });
-  if (data.work) links.push({ href: "#work", label: "Work" });
-  if (data.testimonials)
-    links.push({ href: "#testimonials", label: "Testimonials" });
-  if (data.contact) links.push({ href: "#contact", label: "Contact" });
+  if (data.about) links.push({ href: "about", label: "About" });
+  if (data.skills) links.push({ href: "skills", label: "Skills" });
+  if (data.projects) links.push({ href: "projects", label: "Projects" });
+  if (data.services) links.push({ href: "services", label: "Services" });
+  if (data.work) links.push({ href: "work", label: "Work" });
+  if (data.testimonials) links.push({ href: "testimonials", label: "Testimonials" });
+  if (data.contact) links.push({ href: "contact", label: "Contact" });
+
+  // Smooth scroll handler
+  const handleScroll = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setOpen(false); // close mobile menu after click
+  };
 
   return (
     <nav className="navbar bg-base-100 backdrop-blur sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
         {/* Logo / Brand */}
-        <a href="#" className="text-xl font-bold">
-          My Portfolio — Demo
-        </a>
+        <a href="#" className="text-xl font-bold">My Portfolio — Demo</a>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
           {links.map((link, i) => (
-            <a
+            <button
               key={i}
-              href={link.href}
+              onClick={() => handleScroll(link.href)}
               className="btn btn-ghost btn-sm text-sm"
             >
               {link.label}
-            </a>
+            </button>
           ))}
 
           {/* Dark/Light Mode Toggle */}
@@ -64,14 +69,13 @@ export default function Navbar({ data }) {
       {open && (
         <div className="md:hidden bg-base-100 shadow-lg flex flex-col items-center py-4 space-y-3">
           {links.map((link, i) => (
-            <a
+            <button
               key={i}
-              href={link.href}
+              onClick={() => handleScroll(link.href)}
               className="btn btn-ghost btn-sm w-full text-center"
-              onClick={() => setOpen(false)}
             >
               {link.label}
-            </a>
+            </button>
           ))}
 
           {/* Dark/Light Mode Toggle (Mobile) */}
