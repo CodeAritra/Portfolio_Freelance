@@ -1,3 +1,4 @@
+import { useScroll, motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 
@@ -10,6 +11,8 @@ export default function Navbar({ data }) {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  const { scrollYProgress } = useScroll();
+
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
   // ✅ Dynamic links
@@ -19,7 +22,8 @@ export default function Navbar({ data }) {
   if (data.projects) links.push({ href: "projects", label: "Projects" });
   if (data.services) links.push({ href: "services", label: "Services" });
   if (data.work) links.push({ href: "work", label: "Work" });
-  if (data.testimonials) links.push({ href: "testimonials", label: "Testimonials" });
+  if (data.testimonials)
+    links.push({ href: "testimonials", label: "Testimonials" });
   if (data.contact) links.push({ href: "contact", label: "Contact" });
 
   // ✅ Smooth scroll without # in URL
@@ -32,49 +36,63 @@ export default function Navbar({ data }) {
   };
 
   return (
-    <nav className="navbar bg-base-100 sticky top-0 z-50 backdrop-blur">
-      <div className="container mx-auto flex justify-between items-center px-4">
-        <span className="text-xl font-bold">My Portfolio — Demo</span>
+    <>
+      <nav className="navbar bg-base-100 sticky top-0 z-50 backdrop-blur">
+        <div className="container mx-auto flex justify-between items-center px-4">
+          <span className="text-xl font-bold">My Portfolio — Demo</span>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-6 items-center">
-          {links.map((link, i) => (
+          {/* Desktop Menu */}
+          <div className="hidden md:flex gap-6 items-center">
+            {links.map((link, i) => (
+              <button
+                key={i}
+                onClick={() => handleScroll(link.href)}
+                className="btn btn-ghost btn-sm text-sm"
+              >
+                {link.label}
+              </button>
+            ))}
             <button
-              key={i}
-              onClick={() => handleScroll(link.href)}
-              className="btn btn-ghost btn-sm text-sm"
+              onClick={toggleTheme}
+              className="btn btn-circle btn-ghost text-xl"
             >
-              {link.label}
+              {theme === "light" ? <FaMoon /> : <FaSun />}
             </button>
-          ))}
-          <button onClick={toggleTheme} className="btn btn-circle btn-ghost text-xl">
-            {theme === "light" ? <FaMoon /> : <FaSun />}
+          </div>
+
+          {/* Mobile menu button */}
+          <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
+            {open ? <FaTimes /> : <FaBars />}
           </button>
         </div>
 
-        {/* Mobile menu button */}
-        <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
-          {open ? <FaTimes /> : <FaBars />}
-        </button>
-      </div>
-
-      {/* Mobile Dropdown */}
-      {open && (
-        <div className="md:hidden bg-base-100 shadow-lg flex flex-col items-center py-4 space-y-3">
-          {links.map((link, i) => (
+        {/* Mobile Dropdown */}
+        {open && (
+          <div className="md:hidden bg-base-100 shadow-lg flex flex-col items-center py-4 space-y-3">
+            {links.map((link, i) => (
+              <button
+                key={i}
+                onClick={() => handleScroll(link.href)}
+                className="btn btn-ghost btn-sm w-full text-center"
+              >
+                {link.label}
+              </button>
+            ))}
             <button
-              key={i}
-              onClick={() => handleScroll(link.href)}
-              className="btn btn-ghost btn-sm w-full text-center"
+              onClick={toggleTheme}
+              className="btn btn-circle btn-ghost text-xl mt-2"
             >
-              {link.label}
+              {theme === "light" ? <FaMoon /> : <FaSun />}
             </button>
-          ))}
-          <button onClick={toggleTheme} className="btn btn-circle btn-ghost text-xl mt-2">
-            {theme === "light" ? <FaMoon /> : <FaSun />}
-          </button>
-        </div>
-      )}
-    </nav>
+          </div>
+        )}
+      </nav>
+
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-[64px] left-0 right-0 h-1 bg-indigo-500 origin-left z-20"
+        style={{ scaleX: scrollYProgress }}
+      />
+    </>
   );
 }

@@ -7,9 +7,8 @@ export default function Services({ services }) {
     <Section id="services" className="py-16 ">
       <motion.div
         className="bg-base-100 rounded-xl shadow-xl p-9"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{scale: 1, opacity: 1 }}
         transition={{ duration: 0.6 }}
         // variants={{ show: { transition: { staggerChildren: 0.08 } } }}
       >

@@ -3,22 +3,12 @@ import { motion } from "framer-motion";
 import Section from "./Section";
 
 export default function Portfolio({ items }) {
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.07 } },
-  };
-  const item = {
-    hidden: { opacity: 0, y: 12, scale: 0.98 },
-    show: { opacity: 1, y: 0, scale: 1 },
-  };
-
   return (
     <Section id="work" className="py-16 ">
       <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
+        initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6 }}
         className=" bg-base-100 p-9 rounded-xl shadow-xl"
       >
         <h3 className="text-3xl font-bold text-center mb-10">Work</h3>
@@ -26,7 +16,9 @@ export default function Portfolio({ items }) {
           {items.map((it, idx) => (
             <motion.div
               key={idx}
-              variants={item}
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6 }}
               whileHover={{ scale: 1.03 }}
               className="card bg-base-100  hover:shadow-2xl transition"
             >

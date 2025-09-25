@@ -3,22 +3,14 @@ import { motion } from "framer-motion";
 import Section from "./Section";
 
 export default function Hero({ data }) {
-  const variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  };
-
   return (
     <Section
       id="hero"
       className="py-12 sm:py-16 bg-base-100 rounded-2xl shadow-xl"
     >
       <motion.div
-        initial="hidden"
-        animate="show"
-        variants={variants}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6 }}
         className="grid gap-8 lg:gap-12 md:grid-cols-2 items-center px-4"
       >

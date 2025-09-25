@@ -12,7 +12,9 @@ export default function Contact({ data }) {
 
   return (
     <Section id="contact" className="py-20 ">
-      <div className=" text-center bg-base-100 p-9 rounded-xl shadow-xl ">
+      <motion.div initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6 }} className=" text-center bg-base-100 p-9 rounded-xl shadow-xl ">
         <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
 
         <div className="flex justify-center gap-6 flex-wrap">
@@ -62,7 +64,7 @@ export default function Contact({ data }) {
             </motion.a>
           )}
         </div>
-      </div>
+      </motion.div>
     </Section>
   );
 }
