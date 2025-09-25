@@ -1,7 +1,8 @@
 {
   "hero": {
-    "title": "Glow Salon — Trusted Excellence",
-    "subtitle": "Premium salon services with an emphasis on hygiene & customer care.",
+    "title": "Glow Salon",
+    "subtitle":"Trusted Excellence",
+    "description": "Premium salon services with an emphasis on hygiene & customer care.",
     "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1200&q=80",
     "cta": { "label": "Book Now", "href": "#contact" }
   },
@@ -18,7 +19,7 @@
     {
       "title": "Bridal Makeover",
       "category": "Makeup",
-      "image": "https://images.unsplash.com/photo-1503342217505-b0a15d3b3f57?w=1000&q=80"
+      "image": "https://i.pinimg.com/564x/44/da/33/44da33601e6b964040de09877784614e.jpg"
     },
     {
       "title": "Salon Interior",

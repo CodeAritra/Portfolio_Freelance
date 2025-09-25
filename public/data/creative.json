@@ -1,8 +1,9 @@
 {
   "hero": {
-    "title": "Luna — Photographer & Visual Artist",
-    "subtitle": "Bold imagery, editorial photography and creative direction.",
-    "image": "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=1200&q=80",
+    "title": "Luna",
+    "subtitle": "Photographer & Visual Artist",
+    "description": "Bold imagery, editorial photography and creative direction.",
+    "image": "https://img.freepik.com/free-photo/man-with-camera_23-2147689324.jpg?semt=ais_hybrid&w=740&q=80",
     "cta": { "label": "View Gallery", "href": "#portfolio" }
   },
   "about": {
@@ -18,7 +19,7 @@
     {
       "title": "Fashion Editorial",
       "category": "Editorial",
-      "image": "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=1000&q=80"
+      "image": "https://m.media-amazon.com/images/I/51uRZ2bjQvL._UF1000,1000_QL80_.jpg"
     },
     {
       "title": "Urban Portraits",
