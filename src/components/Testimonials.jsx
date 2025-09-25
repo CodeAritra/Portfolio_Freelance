@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Section from "./Section";
 
 export default function Testimonials({ data }) {
   const [index, setIndex] = useState(0);
@@ -13,7 +14,7 @@ export default function Testimonials({ data }) {
   }, [data.length]);
 
   return (
-    <section id="testimonials" className="py-20 ">
+    <Section id="testimonials" className="py-20 ">
       <div className="max-w-4xl mx-auto px-4 text-center bg-base-100 p-9 rounded-xl shadow-xl">
         <h3 className="text-3xl font-bold text-center mb-10">Testimonials</h3>
         <motion.div
@@ -46,6 +47,6 @@ export default function Testimonials({ data }) {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

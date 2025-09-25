@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Section from "./Section";
 
 export default function Hero({ data }) {
   const variants = {
@@ -8,7 +9,10 @@ export default function Hero({ data }) {
   };
 
   return (
-    <section id="hero" className="py-12 sm:py-16  bg-base-100 rounded-2xl shadow-xl">
+    <Section
+      id="hero"
+      className="py-12 sm:py-16 bg-base-100 rounded-2xl shadow-xl"
+    >
       <motion.div
         initial="hidden"
         animate="show"
@@ -25,8 +29,14 @@ export default function Hero({ data }) {
           >
             {data.title}
           </h1>
-          <p className="mt-4 max-w-xl mx-auto md:mx-0 text-gray-600 text-base sm:text-lg">
+          <h2
+            className="text-2xl sm:text-sm md:text-md lg:text-2xl font-extrabold 
+        bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+          >
             {data.subtitle}
+          </h2>
+          <p className="mt-4 max-w-xl mx-auto md:mx-0 text-gray-600 text-base sm:text-lg">
+            {data.description}
           </p>
           {data.cta && (
             <a
@@ -47,6 +57,6 @@ export default function Hero({ data }) {
           />
         </motion.div>
       </motion.div>
-    </section>
+    </Section>
   );
 }

@@ -1,9 +1,10 @@
 {
   "hero": {
-    "title": "Aritra Dhank — Full Stack Developer",
-    "subtitle": "I build scalable web apps with React, Node.js and MongoDB. Currently building realtime and cloud-native systems.",
+    "title": "Aritra Dhank",
+    "subtitle": "Full Stack Developer",
+    "description": "I build scalable web apps with React, Node.js and MongoDB. Currently building realtime and cloud-native systems.",
     "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80",
-    "cta": { "label": "View Work", "href": "#portfolio" }
+    "cta": { "label": "Resume", "href": "projects" }
   },
   "about": {
     "text": "I'm a CS student focusing on full-stack development & distributed systems. I love building performant, maintainable products.",

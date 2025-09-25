@@ -1,9 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Section from "./Section";
 
 export default function Services({ services }) {
   return (
-    <section id="services" className="py-16 ">
+    <Section id="services" className="py-16 ">
       <motion.div
         className="bg-base-100 rounded-xl shadow-xl p-9"
         initial={{ opacity: 0 }}
@@ -35,6 +36,6 @@ export default function Services({ services }) {
           ))}
         </div>
       </motion.div>
-    </section>
+    </Section>
   );
 }

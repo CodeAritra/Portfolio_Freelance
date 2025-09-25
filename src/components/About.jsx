@@ -1,9 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Section from "./Section";
 
 export default function About({ data }) {
   return (
-    <section id="about" className="py-16 ">
+    <Section id="about" className="py-16 ">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -31,6 +32,6 @@ export default function About({ data }) {
           <p className="leading-relaxed">{data.text}</p>
         </div>
       </motion.div>
-    </section>
+    </Section>
   );
 }

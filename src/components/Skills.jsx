@@ -1,9 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Section from "./Section";
 
 export default function Skills({ skills }) {
   return (
-    <section id="skills" className="py-16 ">
+    <Section id="skills" className="py-16 ">
       <motion.div
         className="bg-base-100 rounded-xl shadow-xl p-9"
         initial={{ opacity: 0 }}
@@ -35,6 +36,6 @@ export default function Skills({ skills }) {
           ))}
         </div>
       </motion.div>
-    </section>
+    </Section>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Section from "./Section";
 
 export default function Project({ projects }) {
   const container = {
@@ -12,7 +13,7 @@ export default function Project({ projects }) {
   };
 
   return (
-    <section id="projects" className="py-16 ">
+    <Section id="projects" className="py-16 ">
       <motion.div
         variants={container}
         initial="hidden"
@@ -52,6 +53,6 @@ export default function Project({ projects }) {
           ))}
         </div>
       </motion.div>
-    </section>
+    </Section>
   );
 }

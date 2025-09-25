@@ -5,13 +5,14 @@ import {
   FaEnvelope,
   FaLinkedin,
 } from "react-icons/fa";
+import Section from "./Section";
 
 export default function Contact({ data }) {
   if (!data) return null;
 
   return (
-    <section id="contact" className="py-20 ">
-      <div className="max-w-4xl mx-auto text-center bg-base-100 p-9 rounded-xl shadow-xl">
+    <Section id="contact" className="py-20 ">
+      <div className=" text-center bg-base-100 p-9 rounded-xl shadow-xl ">
         <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
 
         <div className="flex justify-center gap-6 flex-wrap">
@@ -62,6 +63,6 @@ export default function Contact({ data }) {
           )}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
