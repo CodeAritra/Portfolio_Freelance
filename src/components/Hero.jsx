@@ -27,7 +27,7 @@ export default function Hero({ data }) {
           >
             {data.subtitle}
           </h2>
-          <p className="mt-4 max-w-xl mx-auto md:mx-0 text-gray-600 text-base sm:text-lg">
+          <p className="mt-4 max-w-xl mx-auto md:mx-0  text-base sm:text-lg">
             {data.description}
           </p>
           {data.cta && (

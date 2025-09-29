@@ -1,10 +1,10 @@
 import { useScroll, motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
+import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 
 export default function Navbar({ data }) {
-  const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     document.querySelector("html").setAttribute("data-theme", theme);
@@ -26,19 +26,20 @@ export default function Navbar({ data }) {
     links.push({ href: "testimonials", label: "Testimonials" });
   if (data.contact) links.push({ href: "contact", label: "Contact" });
 
-  // ✅ Smooth scroll without # in URL
+  // ✅ Smooth scroll without #
   const handleScroll = (id) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
-      setOpen(false);
+      setDrawerOpen(false); // close drawer on link click
     }
   };
 
   return (
     <>
-      <nav className="navbar bg-base-100 sticky top-0 z-50 backdrop-blur">
+      <nav className="navbar bg-base-100 sticky top-0 z-50 backdrop-blur border-b border-base-300">
         <div className="container mx-auto flex justify-between items-center px-4">
+          {/* Brand / Name */}
           <span className="text-xl font-bold">My Portfolio — Demo</span>
 
           {/* Desktop Menu */}
@@ -60,37 +61,69 @@ export default function Navbar({ data }) {
             </button>
           </div>
 
-          {/* Mobile menu button */}
-          <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
-            {open ? <FaTimes /> : <FaBars />}
-          </button>
-        </div>
-
-        {/* Mobile Dropdown */}
-        {open && (
-          <div className="md:hidden bg-base-100 shadow-lg flex flex-col items-center py-4 space-y-3">
-            {links.map((link, i) => (
-              <button
-                key={i}
-                onClick={() => handleScroll(link.href)}
-                className="btn btn-ghost btn-sm w-full text-center"
-              >
-                {link.label}
-              </button>
-            ))}
+          {/* Mobile Controls (darkmode + hamburger) */}
+          <div className="flex md:hidden gap-2 items-center">
             <button
               onClick={toggleTheme}
-              className="btn btn-circle btn-ghost text-xl mt-2"
+              className="btn btn-circle btn-ghost text-xl"
             >
               {theme === "light" ? <FaMoon /> : <FaSun />}
             </button>
+            <button
+              onClick={() => setDrawerOpen(!drawerOpen)}
+              className="btn btn-circle btn-ghost text-xl"
+            >
+              <FaBars />
+            </button>
           </div>
-        )}
+        </div>
       </nav>
+
+      {/* ✅ Drawer (Mobile Sidebar) */}
+      <div
+        className={`fixed inset-0 z-40 transition-transform duration-300 ${
+          drawerOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Overlay */}
+        <div
+          className="absolute inset-0 bg-black/40"
+          onClick={() => setDrawerOpen(false)}
+        />
+
+        {/* Drawer Panel */}
+        {/* ✅ Drawer (Mobile Sidebar) */}
+        <div
+          className={`fixed inset-0 z-40 transition-transform duration-300 ${
+            drawerOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {/* Overlay — start *below* navbar */}
+          <div
+            className="absolute top-[64px] left-0 right-0 bottom-0 bg-black/40"
+            onClick={() => setDrawerOpen(false)}
+          />
+
+          {/* Drawer Panel — start *below* navbar */}
+          <div className="absolute right-0 top-[64px] h-[calc(100%-64px)] w-72 bg-base-200 shadow-xl flex flex-col p-4">
+            <div className="flex flex-col gap-3">
+              {links.map((link, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleScroll(link.href)}
+                  className="btn btn-ghost btn-lg text-left"
+                >
+                  {link.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Scroll Progress Bar */}
       <motion.div
-        className="fixed top-[64px] left-0 right-0 h-1 bg-indigo-500 origin-left z-20"
+        className="fixed top-[64px] left-0 right-0 h-1 bg-indigo-500 origin-left z-30"
         style={{ scaleX: scrollYProgress }}
       />
     </>
